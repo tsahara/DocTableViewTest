@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class Document: NSDocument, NSTableViewDataSource {
 
     override init() {
         super.init()
@@ -43,6 +43,16 @@ class Document: NSDocument {
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
-
+    
+    //
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row rowIndex: Int) -> AnyObject? {
+        let cellView = tableView.makeViewWithIdentifier("Col1", owner: self) as! NSTableCellView
+        cellView.textField!.stringValue = "SuToringu"
+        return cellView
+    }
 }
 
