@@ -49,9 +49,10 @@ class Document: NSDocument, NSTableViewDataSource {
         return 3
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row rowIndex: Int) -> AnyObject? {
-        let cellView = tableView.makeViewWithIdentifier("Col1", owner: self) as! NSTableCellView
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row rowIndex: Int) -> NSView? {
+        let cellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         cellView.textField!.stringValue = "SuToringu"
+        print("column : \(tableColumn?.identifier)")
         return cellView
     }
 }

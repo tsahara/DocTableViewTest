@@ -107,6 +107,7 @@
                                     </tableColumns>
                                     <connections>
                                         <outlet property="dataSource" destination="-2" id="Fef-TJ-Yd4"/>
+                                        <outlet property="delegate" destination="-2" id="WHH-lB-G2Q"/>
                                     </connections>
                                 </tableView>
                             </subviews>
