@@ -79,8 +79,8 @@
 			children = (
 				1F8EE4D31C21AA640000666E /* AppDelegate.swift */,
 				1F8EE4D51C21AA640000666E /* Document.swift */,
-				1F8EE4D71C21AA640000666E /* Document.xib */,
 				1F8EE4DA1C21AA640000666E /* Assets.xcassets */,
+				1F8EE4D71C21AA640000666E /* Document.xib */,
 				1F8EE4DC1C21AA640000666E /* MainMenu.xib */,
 				1F8EE4DF1C21AA640000666E /* Info.plist */,
 			);
