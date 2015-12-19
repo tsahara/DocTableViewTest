@@ -8,11 +8,29 @@
 
 import Cocoa
 
-class Document: NSDocument, NSTableViewDataSource {
-
+class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
+    
+    
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
+
+        outlineviewinit()
+    }
+    
+    var headers: [Header] = []
+    func outlineviewinit() {
+        let ip_h = Header(name: "ip")
+        ip_h.add_field(Field(name: "version", desc: "IPv6"))
+        ip_h.add_field(Field(name: "src address", desc: "172.16.0.1"))
+        headers.append(ip_h)
+        
+        let tcp_h = Header(name: "tcp")
+        tcp_h.add_field(Field(name: "src port", desc: "50000"))
+        tcp_h.add_field(Field(name: "dst port", desc: "80"))
+        headers.append(tcp_h)
+        
+        print("headers => \(headers.map { $0.name })")
     }
 
     override func windowControllerDidLoadNib(aController: NSWindowController) {
@@ -45,6 +63,8 @@ class Document: NSDocument, NSTableViewDataSource {
 
     
     //
+    // NSTableView
+    //
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return 3
     }
@@ -54,6 +74,71 @@ class Document: NSDocument, NSTableViewDataSource {
         cellView.textField!.stringValue = "cell row=\(rowIndex)"
         //print("column : \(tableColumn?.identifier)")
         return cellView
+    }
+    
+    //
+    // NSOutlineView
+    //
+    func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+        if (item == nil) {
+            return headers.count
+        } else {
+            let h = item as! Header
+            return h.fields.count
+        }
+    }
+    
+    func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+        if item is Header {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+        if item == nil {
+            print("1: \(headers[index].name)")
+            return headers[index]
+        } else if item is Header {
+            let h = item as! Header
+            return h.fields[index]
+        }
+
+        return 1
+    }
+    
+    func outlineView(outlineView: NSOutlineView, objectValueForTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
+        if item is Header {
+            let h = item as! Header
+            print("header -> \(h.name)")
+            return h.name
+        } else if item is Field {
+            let f = item as! Field
+            return f.name
+        }
+        return "fuga"
+    }
+}
+
+class Field {
+    var name: String
+    var desc: String
+    init(name: String, desc: String) {
+        self.name = name
+        self.desc = desc
+    }
+}
+
+class Header {
+    var name: String
+    var fields: [Field] = []
+    init(name: String) {
+        self.name = name
+    }
+    
+    func add_field(field: Field) {
+        fields.append(field)
     }
 }
 
