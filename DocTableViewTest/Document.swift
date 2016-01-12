@@ -9,8 +9,7 @@
 import Cocoa
 
 class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
-    
-    
+
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -66,7 +65,7 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
     // NSTableView
     //
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return 3
+        return 9
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row rowIndex: Int) -> NSView? {
@@ -74,6 +73,12 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
         cellView.textField!.stringValue = "cell row=\(rowIndex)"
         //print("column : \(tableColumn?.identifier)")
         return cellView
+    }
+   
+    func tableView(tableView: NSTableView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
+        if row % 4 == 1 {
+            rowView.backgroundColor = NSColor.selectedTextBackgroundColor()
+        }
     }
     
     //
