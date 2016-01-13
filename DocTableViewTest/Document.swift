@@ -10,6 +10,8 @@ import Cocoa
 
 class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
 
+    @IBOutlet weak var table: NSTableView!
+
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -76,11 +78,16 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
     }
    
     func tableView(tableView: NSTableView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
-        if row % 4 == 1 {
+        if row == tableView.selectedRow + 2 {
             rowView.backgroundColor = NSColor.selectedTextBackgroundColor()
         }
     }
     
+    func tableViewSelectionDidChange(notification: NSNotification) {
+        print("select \(self.table!.selectedRow)")
+        table!.reloadData()
+    }
+
     //
     // NSOutlineView
     //
