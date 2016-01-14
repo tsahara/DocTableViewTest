@@ -77,15 +77,16 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
         return cellView
     }
    
-    func tableView(tableView: NSTableView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
-        if row == tableView.selectedRow + 2 {
-            rowView.backgroundColor = NSColor.selectedTextBackgroundColor()
-        }
-    }
+//    func tableView(tableView: NSTableView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
+//        if row == tableView.selectedRow + 2 {
+//            rowView.backgroundColor = NSColor.selectedTextBackgroundColor()
+//        }
+//    }
     
     func tableViewSelectionDidChange(notification: NSNotification) {
-        print("select \(self.table!.selectedRow)")
-        table!.reloadData()
+        let selected = self.table!.selectedRow
+        let rowView = self.table!.rowViewAtRow(selected + 2, makeIfNecessary: true)
+        rowView!.backgroundColor = NSColor.selectedTextBackgroundColor()
     }
 
     //
