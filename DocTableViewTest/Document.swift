@@ -11,6 +11,8 @@ import Cocoa
 class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
 
     @IBOutlet weak var table: NSTableView!
+    
+    var last_selected: Int = -1
 
     override init() {
         super.init()
@@ -84,9 +86,15 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
 //    }
     
     func tableViewSelectionDidChange(notification: NSNotification) {
+        if last_selected != -1 {
+            let rowView2 = self.table!.rowViewAtRow(last_selected + 2, makeIfNecessary: true)
+            rowView2!.backgroundColor = NSColor.whiteColor()
+        }
+
         let selected = self.table!.selectedRow
         let rowView = self.table!.rowViewAtRow(selected + 2, makeIfNecessary: true)
         rowView!.backgroundColor = NSColor.selectedTextBackgroundColor()
+        last_selected = selected
     }
 
     //
