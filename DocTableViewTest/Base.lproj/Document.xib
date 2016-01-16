@@ -104,6 +104,7 @@
                                     <connections>
                                         <outlet property="dataSource" destination="-2" id="Fef-TJ-Yd4"/>
                                         <outlet property="delegate" destination="-2" id="WHH-lB-G2Q"/>
+                                        <outlet property="menu" destination="xza-ZD-7KY" id="kkf-3s-dgd"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -176,5 +177,19 @@
             </connections>
             <point key="canvasLocation" x="287.5" y="234.5"/>
         </window>
+        <menu id="xza-ZD-7KY">
+            <items>
+                <menuItem title="Item 1" id="AHz-Gi-sDb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 2" id="HYg-mM-RXz">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 3" id="skk-y1-dEZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="265.5" y="551.5"/>
+        </menu>
     </objects>
 </document>
