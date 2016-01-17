@@ -20,6 +20,10 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
 
         outlineviewinit()
     }
+
+    @IBAction func aaa(sender: AnyObject) {
+        print("AAA!")
+    }
     
     var headers: [Header] = []
     func outlineviewinit() {

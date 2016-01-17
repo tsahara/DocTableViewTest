@@ -179,8 +179,11 @@
         </window>
         <menu id="xza-ZD-7KY">
             <items>
-                <menuItem title="Item 1" id="AHz-Gi-sDb">
+                <menuItem title="AAA" id="AHz-Gi-sDb">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="aaa:" target="-2" id="97S-T1-L8k"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Item 2" id="HYg-mM-RXz">
                     <modifierMask key="keyEquivalentModifierMask"/>
