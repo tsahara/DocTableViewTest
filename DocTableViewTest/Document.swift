@@ -90,14 +90,16 @@ class Document: NSDocument, NSTableViewDataSource, NSOutlineViewDataSource {
 //    }
     
     func tableViewSelectionDidChange(notification: NSNotification) {
-        if last_selected != -1 {
+        if last_selected != -1 && last_selected < 7 {
             let rowView2 = self.table!.rowViewAtRow(last_selected + 2, makeIfNecessary: true)
             rowView2!.backgroundColor = NSColor.whiteColor()
         }
 
         let selected = self.table!.selectedRow
-        let rowView = self.table!.rowViewAtRow(selected + 2, makeIfNecessary: true)
-        rowView!.backgroundColor = NSColor.selectedTextBackgroundColor()
+        if selected < 7 {
+            let rowView = self.table!.rowViewAtRow(selected + 2, makeIfNecessary: true)
+            rowView!.backgroundColor = NSColor.selectedTextBackgroundColor()
+        }
         last_selected = selected
     }
 
